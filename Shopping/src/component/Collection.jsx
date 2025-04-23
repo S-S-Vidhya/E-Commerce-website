@@ -128,6 +128,7 @@ const Collection = () => {
                 mb: { xs: 2, sm: 0 }
               }}
             >
+          
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                 <Typography 
                   variant="h6" 
@@ -160,7 +161,7 @@ const Collection = () => {
                   {showFilters ? "Hide" : "Filters"}
                 </Button>
               </Box>
-
+            
               <Box mb={3}>
                 <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1, fontFamily:'serif' }}>Categories</Typography>
                 <List sx={{ ml: { xs: '-10px' }}}>

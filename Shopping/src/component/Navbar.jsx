@@ -39,20 +39,20 @@ const Navbar = () => {
           display: "flex", 
           justifyContent: "space-between", 
           alignItems: "center", 
-          flexWrap: "wrap",
-          padding: isMobile ? "8px" : "16px"
+          flexWrap: "nowrap",
+          padding: isMobile ? "8px" : "8px"
         }}>
           {/* Brand Name */}
           <Typography 
             variant="h5" 
             sx={{ 
               fontWeight: 900, 
-              flex: isMobile && !showSearch ? 1 : 0.5, 
+              flex: isMobile && !showSearch ? 0.5 : 0.5, 
               color: "#D81B60", 
               letterSpacing: "2px",
               fontFamily: "Dancing Script",
               fontStyle: "normal",
-              fontSize: isMobile ? "1.2rem" : "1.5rem"
+              fontSize: isMobile ? "1rem" : "1.5rem"
             }}
           >
             Elite Spark
@@ -62,8 +62,8 @@ const Navbar = () => {
           {!isMobile && (
             <Box sx={{ 
               display: "flex", 
-              gap: 2, 
-              flexGrow: 1, 
+              gap: 0.5, 
+              flexGrow: 0.2, 
               justifyContent: "center" 
             }}>
               <Button variant="text" component={Link} to="/" sx={{ color: "#D81B60" }}>Home</Button>

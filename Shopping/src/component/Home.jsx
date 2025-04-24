@@ -1,20 +1,18 @@
 import React, { useRef } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, useMediaQuery, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Zoom, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/zoom";
-
-// Import your images
 import slide1 from '../assets/images/home1.png';
 import slide2 from '../assets/images/home2.png';
 import Collection from "./Collection";
 
-
-
 const Home = () => {
   const swiperRef = useRef(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const slides = [
     {
@@ -47,7 +45,14 @@ const Home = () => {
 
   return (
     <>
-      <Box sx={{ width: "80%", overflow: "hidden", position: 'relative',display:'flex',marginX:'auto',marginTop:'10%'
+      <Box sx={{ 
+        width: { xs: "95%", sm: "90%", md: "85%" }, 
+        overflow: "hidden", 
+        position: 'relative',
+        marginX: 'auto',
+        marginTop: { xs: '15%', sm: '10%' },
+        borderRadius: '8px',
+        boxShadow: 3
       }}>
         <Swiper
           modules={[Zoom, Autoplay]}
@@ -55,7 +60,7 @@ const Home = () => {
           autoplay={{ delay: 3000 }}
           loop={true}
           style={{
-            height: "430px",
+            height: isMobile ? "500px" : "430px",
             width: "100%",
           }}
         >
@@ -63,38 +68,64 @@ const Home = () => {
             <SwiperSlide key={index}>
               <Box sx={{
                 display: 'flex',
-                flexDirection: slide.layout === "text-right" ? 'row-reverse' : 'row',
+                flexDirection: isMobile ? 'column' : (slide.layout === "text-right" ? 'row-reverse' : 'row'),
                 height: '100%',
                 alignItems: 'center',
                 backgroundColor: slide.bgColor,
+                position: 'relative'
               }}>
+                {/* Text Content */}
                 <Box sx={{
-                  width: { xs: '100%', md: '50%' },
-                  padding: '0 5%',
+                  width: isMobile ? '100%' : '50%',
+                  padding: isMobile ? '20px' : '0 5%',
                   zIndex: 2,
-                  backgroundColor: slide.bgColor, // Set background color to match content
+                  textAlign: isMobile ? 'center' : 'left',
+                  order: isMobile ? 2 : 'unset',
+                  py: isMobile ? 3 : 0
                 }}>
-                  <Typography variant="h3" fontWeight={'bold'} sx={{color:slide.textColor,fontFamily:'serif'}}>
+                  <Typography 
+                    variant={isMobile ? "h4" : "h3"} 
+                    fontWeight={'bold'} 
+                    sx={{
+                      color: slide.textColor,
+                      fontFamily: 'serif',
+                      lineHeight: 1.2
+                    }}
+                  >
                     {slide.title}
                   </Typography>
-                  <Typography variant="h6" sx={{color:slide.textColor === 'brown' ? '#8B5E3C' : '#666', 
-               my:2 }}>
+                  <Typography 
+                    variant={isMobile ? "body1" : "h6"} 
+                    sx={{
+                      color: slide.textColor === 'brown' ? '#8B5E3C' : '#666', 
+                      my: 2,
+                      lineHeight: 1.5
+                    }}
+                  >
                     {slide.subtitle}
                   </Typography>
-                  <Button variant="contained" sx={{backgroundColor:slide.buttonColor}}
-                  component={Link}
-                  to={slide.link}>
+                  <Button 
+                    variant="contained" 
+                    sx={{
+                      backgroundColor: slide.buttonColor,
+                      fontSize: isMobile ? '0.875rem' : '1rem',
+                      px: 3,
+                      py: 1
+                    }}
+                    component={Link}
+                    to={slide.link}
+                  >
                     {slide.buttonText.toUpperCase()}
                   </Button>
                 </Box>
                 
+                {/* Image Content */}
                 <Box sx={{
-                  position: { xs: 'absolute', md: 'relative' },
-                  width: { xs: '100%', md: '50%' },
-                  height: '100%',
+                  width: isMobile ? '100%' : '50%',
+                  height: isMobile ? '60%' : '100%',
                   overflow: 'hidden',
-                 
                   backgroundColor: slide.bgColor,
+                  order: isMobile ? 1 : 'unset'
                 }}>
                   <Box
                     component="img"
@@ -112,14 +143,21 @@ const Home = () => {
           ))}
         </Swiper>
       </Box>
-      <Typography sx={{ color: "#D81B60", textAlign: "center",mt:10,fontFamily:'serif',fontWeight:'bold',fontSize:'1.5rem'}} >Explore Our Products</Typography>
-    <Collection/>
+
+      <Typography sx={{ 
+        color: "#D81B60", 
+        textAlign: "center",
+        mt: { xs: 6, sm: 10 },
+        fontFamily: 'serif',
+        fontWeight: 'bold',
+        fontSize: { xs: '1.25rem', sm: '1.5rem' }
+      }}>
+        Explore Our Products
+      </Typography>
+      
+      <Collection/>
     </>
   );
 };
 
 export default Home;
-
-
-
-

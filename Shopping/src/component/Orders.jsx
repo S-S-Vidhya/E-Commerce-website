@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { 
+import {
   Box, Typography, Button, Paper, Grid, Avatar, Divider, Chip,
   IconButton, Dialog, DialogTitle, DialogContent, DialogActions
 } from "@mui/material";
@@ -42,19 +42,19 @@ const Orders = () => {
 
   return (
     <Box p={4} sx={{ maxWidth: 1200, margin: '0 auto' }}>
-      <Typography 
-        variant="h5" 
-        mt={3} 
-        gutterBottom 
-        sx={{ 
+      <Typography
+        variant="h5"
+        mt={3}
+        gutterBottom
+        sx={{
           color: "#D81B60",
           textAlign: "center",
           fontFamily: 'serif',
           fontWeight: 'bold',
-          mb: 4
+          mb: 1
         }}
       >
-        <ShoppingBag sx={{ verticalAlign: 'middle', mr: 2 }} />
+        {/* <ShoppingBag sx={{ verticalAlign: 'middle', mr: 2 }} /> */}
         Your Orders
       </Typography>
 
@@ -63,9 +63,9 @@ const Orders = () => {
           <Typography variant="h6" color="text.secondary">
             You haven't placed any orders yet
           </Typography>
-          <Button 
-            variant="contained" 
-            sx={{ 
+          <Button
+            variant="contained"
+            sx={{
               mt: 3,
               backgroundColor: "#D81B60",
               '&:hover': { backgroundColor: "#C2185B" }
@@ -79,9 +79,9 @@ const Orders = () => {
         <Grid container spacing={3}>
           {orders.map((order) => (
             <Grid item xs={12} key={order.id}>
-              <Paper 
-                elevation={3} 
-                sx={{ 
+              <Paper
+                elevation={3}
+                sx={{
                   p: 3,
                   borderRadius: 2,
                   transition: 'transform 0.2s',
@@ -98,15 +98,15 @@ const Orders = () => {
                       {new Date(order.date).toLocaleDateString()}
                     </Typography>
                   </Box>
-                  <Chip 
-                    label={`₹${order.total}`} 
-                    color="primary" 
-                    sx={{ 
+                  <Chip
+                    label={`₹${order.total}`}
+                    color="primary"
+                    sx={{
                       backgroundColor: "#D81B60",
                       color: 'white',
                       fontWeight: 'bold',
                       fontSize: '1rem'
-                    }} 
+                    }}
                   />
                 </Box>
 
@@ -135,7 +135,7 @@ const Orders = () => {
                     </Typography>
                     <Typography sx={{ mt: 1 }}>
                       <Payment sx={{ verticalAlign: 'middle', mr: 1, fontSize: 18 }} />
-                      Payment: {order.paymentMethod === 'cod' ? 'Cash on Delivery' : 
+                      Payment: {order.paymentMethod === 'cod' ? 'Cash on Delivery' :
                         order.paymentMethod?.toUpperCase() || 'UPI'}
                     </Typography>
                   </Grid>
@@ -146,15 +146,15 @@ const Orders = () => {
                 </Typography>
                 <Box sx={{ maxHeight: 200, overflow: 'auto' }}>
                   {order.items?.map((item) => (
-                    <Box 
-                      key={item.id} 
-                      display="flex" 
-                      alignItems="center" 
+                    <Box
+                      key={item.id}
+                      display="flex"
+                      alignItems="center"
                       sx={{ mb: 2, p: 1, backgroundColor: '#f9f9f9', borderRadius: 1 }}
                     >
-                      <Avatar 
-                        src={item.image} 
-                        alt={item.name} 
+                      <Avatar
+                        src={item.image}
+                        alt={item.name}
                         sx={{ width: 60, height: 60, mr: 2 }}
                       />
                       <Box flexGrow={1}>
@@ -174,7 +174,7 @@ const Orders = () => {
                     color="error"
                     startIcon={<Delete />}
                     onClick={() => handleDeleteClick(order)}
-                    sx={{ 
+                    sx={{
                       textTransform: 'none',
                       '&:hover': { backgroundColor: '#ffebee' }
                     }}
@@ -201,8 +201,8 @@ const Orders = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDeleteDialog(false)}>No, Keep It</Button>
-          <Button 
-            onClick={deleteOrder} 
+          <Button
+            onClick={deleteOrder}
             color="error"
             variant="contained"
           >

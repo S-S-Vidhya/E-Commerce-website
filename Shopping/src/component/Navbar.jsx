@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Badge, AppBar, Toolbar, Typography, Box, BottomNavigation, BottomNavigationAction, Button, TextField, InputAdornment, IconButton } from "@mui/material";
-import { Search, Close, Home, Category, AccountCircle, Favorite, ShoppingCart ,ShoppingBag} from "@mui/icons-material";
+import { Search, Close, Home, Category, AccountCircle, Favorite, ShoppingCart, Person, ShoppingBag } from "@mui/icons-material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "./CardContext"; 
+import { CartContext } from "./CardContext";
 
 const Navbar = () => {
   const [value, setValue] = useState(0);
@@ -27,28 +27,28 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar 
-        position="fixed" 
-        color="default" 
+      <AppBar
+        position="fixed"
+        color="default"
         elevation={1}
-        sx={{ 
-          zIndex: (theme) => theme.zIndex.drawer + 1 
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1
         }}
       >
-        <Toolbar sx={{ 
-          display: "flex", 
-          justifyContent: "space-between", 
-          alignItems: "center", 
+        <Toolbar sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           flexWrap: "nowrap",
           padding: isMobile ? "8px" : "8px"
         }}>
           {/* Brand Name */}
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              fontWeight: 900, 
-              flex: isMobile && !showSearch ? 0.5 : 0.5, 
-              color: "#D81B60", 
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 900,
+              flex: isMobile && !showSearch ? 0.5 : 0.5,
+              color: "#D81B60",
               letterSpacing: "2px",
               fontFamily: "Dancing Script",
               fontStyle: "normal",
@@ -60,11 +60,11 @@ const Navbar = () => {
 
           {/* Navigation Links as Buttons */}
           {!isMobile && (
-            <Box sx={{ 
-              display: "flex", 
-              gap: 0.5, 
-              flexGrow: 0.2, 
-              justifyContent: "center" 
+            <Box sx={{
+              display: "flex",
+              gap: 0.5,
+              flexGrow: 0.2,
+              justifyContent: "center"
             }}>
               <Button variant="text" component={Link} to="/" sx={{ color: "#D81B60" }}>Home</Button>
               <Button variant="text" component={Link} to="/collection" sx={{ color: "#D81B60" }}>Collection</Button>
@@ -74,11 +74,11 @@ const Navbar = () => {
           )}
 
           {/* Search Input */}
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: 2, 
-            flex: isMobile && showSearch ? 1 : 'none', 
+          <Box sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0.5,
+            flex: isMobile && showSearch ? 1 : 'none',
             justifyContent: "flex-end",
             width: isMobile && showSearch ? '100%' : 'auto',
             marginLeft: isMobile && !showSearch ? 'auto' : 0
@@ -89,7 +89,7 @@ const Navbar = () => {
                 size="small"
                 placeholder="Search..."
                 value={searchTerm}
-                onChange={handleSearchChange} 
+                onChange={handleSearchChange}
                 sx={{
                   backgroundColor: "white",
                   borderRadius: "5px",
@@ -106,7 +106,7 @@ const Navbar = () => {
                   ),
                   endAdornment: isMobile ? (
                     <InputAdornment position="end">
-                      <IconButton 
+                      <IconButton
                         onClick={() => {
                           setShowSearch(false);
                           setSearchTerm("");
@@ -121,8 +121,8 @@ const Navbar = () => {
                 autoFocus={isMobile && showSearch}
               />
             ) : (
-              <IconButton 
-                onClick={() => setShowSearch(true)} 
+              <IconButton
+                onClick={() => setShowSearch(true)}
                 sx={{ color: '#D81B60' }}
               >
                 <Search />
@@ -130,16 +130,19 @@ const Navbar = () => {
             )}
             {!isMobile && (
               <>
-                <IconButton component={Link} to="/wishlist" sx={{color:' #D81B60'}}>
+                {/* <IconButton component={Link} to='/login' sx={{color:' #D81B60'}}>
+                <Person/>
+                </IconButton> */}
+                <IconButton component={Link} to="/wishlist" sx={{ color: ' #D81B60' }}>
                   <Favorite />
                 </IconButton>
-                <IconButton component={Link} to="/cart" sx={{color:' #D81B60'}}>
+                <IconButton component={Link} to="/cart" sx={{ color: ' #D81B60' }}>
                   <Badge badgeContent={cart?.length || 0} color="error">
                     <ShoppingCart />
                   </Badge>
                 </IconButton>
-                <IconButton component={Link} to="/orders" sx={{color:' #D81B60'}}>
-                <ShoppingBag />
+                <IconButton component={Link} to="/orders" sx={{ color: ' #D81B60' }}>
+                  <ShoppingBag />
                 </IconButton>
               </>
             )}
@@ -152,79 +155,79 @@ const Navbar = () => {
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => setValue(newValue)}
-          sx={{ 
-            position: "fixed", 
-            bottom: 0, 
-            left: 0, 
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
             right: 0,
-            backgroundColor: "rgba(255, 255, 255, 0.95)", 
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
             boxShadow: 3,
             zIndex: (theme) => theme.zIndex.drawer + 1,
             borderTop: '1px solid rgba(0, 0, 0, 0.12)',
             height: '56px'
           }}
         >
-           <BottomNavigationAction
-          icon={<ShoppingBag />} 
-            component={Link} 
-            to="/orders" 
-            sx={{ 
+          <BottomNavigationAction
+            icon={<ShoppingBag />}
+            component={Link}
+            to="/orders"
+            sx={{
               color: "#D81B60",
               minWidth: 'auto',
               padding: '6px 12px'
-            }} 
+            }}
           />
-          <BottomNavigationAction 
-            icon={<Category />} 
-            component={Link} 
-            to="/collection" 
-            sx={{ 
+          <BottomNavigationAction
+            icon={<Category />}
+            component={Link}
+            to="/collection"
+            sx={{
               color: "#D81B60",
               minWidth: 'auto',
               padding: '6px 12px'
-            }} 
+            }}
           />
-         
-          <BottomNavigationAction 
-            icon={<Home />} 
-            component={Link} 
-            to="/" 
-            sx={{ 
+
+          <BottomNavigationAction
+            icon={<Home />}
+            component={Link}
+            to="/"
+            sx={{
               color: "#D81B60",
               minWidth: 'auto',
               padding: '6px 12px'
-            }} 
+            }}
           />
-          <BottomNavigationAction 
-            icon={<Favorite />} 
-            component={Link} 
-            to="/wishlist" 
-            sx={{ 
+          <BottomNavigationAction
+            icon={<Favorite />}
+            component={Link}
+            to="/wishlist"
+            sx={{
               color: "#D81B60",
               minWidth: 'auto',
               padding: '6px 12px'
-            }} 
+            }}
           />
-          <BottomNavigationAction 
+          <BottomNavigationAction
             icon={
               <Badge badgeContent={cart.length} color="error">
                 <ShoppingCart />
               </Badge>
-            } 
-            component={Link} 
-            to="/cart" 
-            sx={{ 
+            }
+            component={Link}
+            to="/cart"
+            sx={{
               color: "#D81B60",
               minWidth: 'auto',
               padding: '6px 12px'
-            }} 
+            }}
           />
-         
+
         </BottomNavigation>
-        
+
       )}
-    
-      
+
+
       {/* Add spacer to prevent content from being hidden behind the app bar */}
       <Toolbar sx={{ minHeight: isMobile ? '56px' : '64px' }} />
       {isMobile && <Box sx={{ pb: 7 }} />}

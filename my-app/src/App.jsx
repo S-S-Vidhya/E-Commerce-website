@@ -1,10 +1,13 @@
 import React from 'react'
-import Home from './component/Home'
+import Navbar from './component/Navbar'
+import SearchForm from './component/SearchForm'
+
 
 const App = () => {
   return (
     <div>
-      <Home/>
+     <Navbar/>
+     <SearchForm/>
     </div>
   )
 }

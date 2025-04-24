@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { 
-  Box, 
-  Typography, 
-  Button, 
-  IconButton, 
-  Grid, 
-  List, 
-  ListItem, 
-  ListItemText, 
-  MenuItem, 
-  Select, 
-  Rating, 
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  Select,
+  Rating,
   Chip,
   Slider,
   Checkbox,
@@ -26,6 +26,7 @@ import { CartContext } from "./CardContext";
 import { WishlistContext } from "./WishlistContext";
 import { useLocation } from "react-router-dom";
 import Contact from './Contact';
+
 
 const Collection = () => {
   const [products, setProducts] = useState([]);
@@ -61,7 +62,7 @@ const Collection = () => {
       (selectedCategory === "All" || product.category === selectedCategory) &&
       (searchQuery === "" || product.name.toLowerCase().includes(searchQuery))
     )
-    .filter(product => 
+    .filter(product =>
       product.Discount >= discountFilter[0] && product.Discount <= discountFilter[1]
     )
     .filter(product =>
@@ -93,32 +94,32 @@ const Collection = () => {
   };
 
   const handleMaterialChange = (material) => {
-    setMaterialFilter(prev => 
-      prev.includes(material) 
-        ? prev.filter(m => m !== material) 
+    setMaterialFilter(prev =>
+      prev.includes(material)
+        ? prev.filter(m => m !== material)
         : [...prev, material]
     );
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-  
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [currentPage]);
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 
-    
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
+
   return (
     <>
-      <Box display="flex" p={{ xs: 1, sm: 3 }} mt={{ xs: 8, sm: 10 ,lg:5}}>
-        <Grid container spacing={2}> 
+      <Box display="flex" p={{ xs: 1, sm: 3 }} mt={{ xs: 8, sm: 10, lg: 5 }}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={3} md={3}>
-            <Box             
+            <Box
               p={{ xs: 1, sm: 2 }}
               borderRight={{ sm: "1px solid #ddd", xs: "none" }}
               sx={{
-                width: { xs: "100%", sm: "150px",md:'200px' ,lg:'250px'},
+                width: { xs: "100%", sm: "150px", md: '200px', lg: '250px' },
                 maxWidth: { sm: "300px" },
                 position: { sm: "sticky", xs: "static" },
                 top: { sm: "80px", xs: 0 },
@@ -128,15 +129,15 @@ const Collection = () => {
                 mb: { xs: 2, sm: 0 }
               }}
             >
-          
+
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography 
-                  variant="h6" 
-                  sx={{ 
+                <Typography
+                  variant="h6"
+                  sx={{
                     color: "#D81B60",
                     fontFamily: 'serif',
-                    fontWeight: 'bold', 
-                    fontSize: { xs: "16px", sm: "14px", md: "22px" } 
+                    fontWeight: 'bold',
+                    fontSize: { xs: "16px", sm: "14px", md: "22px" }
                   }}
                 >
                   Filters
@@ -146,29 +147,29 @@ const Collection = () => {
                   size="small"
                   startIcon={<FilterList />}
                   sx={{
-                    borderColor: "#D81B60", 
-                    color: "#D81B60", 
+                    borderColor: "#D81B60",
+                    color: "#D81B60",
                     fontSize: { xs: "12px", sm: "12px" },
                     padding: { xs: "8px 12px", sm: "6px 12px" },
                     minWidth: { xs: "100px", sm: "auto" },
-                    "&:hover": { 
-                      backgroundColor: "#D81B60", 
-                      color: "#fff" 
-                    } 
+                    "&:hover": {
+                      backgroundColor: "#D81B60",
+                      color: "#fff"
+                    }
                   }}
                   onClick={() => setShowFilters(!showFilters)}
                 >
                   {showFilters ? "Hide" : "Filters"}
                 </Button>
               </Box>
-            
+
               <Box mb={3}>
-                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1, fontFamily:'serif' }}>Categories</Typography>
-                <List sx={{ ml: { xs: '-10px' }}}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1, fontFamily: 'serif' }}>Categories</Typography>
+                <List sx={{ ml: { xs: '-10px' } }}>
                   {["All", "Bangles", "Earrings", "Bracelets", "Rings", "Necklaces", "Pendants", "Anklets"].map((category) => (
-                    <ListItem 
-                      button 
-                      key={category} 
+                    <ListItem
+                      button
+                      key={category}
                       onClick={() => handleCategoryClick(category)}
                       sx={{
                         backgroundColor: selectedCategory === category ? '#F8E1E7' : 'transparent',
@@ -177,13 +178,13 @@ const Collection = () => {
                         my: 1.5
                       }}
                     >
-                      <ListItemText 
-                        primary={category} 
-                        sx={{ 
+                      <ListItemText
+                        primary={category}
+                        sx={{
                           fontWeight: selectedCategory === category ? "bold" : "normal",
                           color: selectedCategory === category ? "#D81B60" : "inherit",
                           fontSize: { xs: "14px", sm: "16px" }
-                        }} 
+                        }}
                       />
                     </ListItem>
                   ))}
@@ -208,7 +209,7 @@ const Collection = () => {
                     </Select>
                   </Box>
 
-               
+
                   <Box mb={3}>
                     <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
                       Discount Range: {discountFilter[0]}% - {discountFilter[1]}%
@@ -223,7 +224,7 @@ const Collection = () => {
                     />
                   </Box>
 
-                 
+
                   <Box mb={3}>
                     <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
                       Minimum Rating: {ratingFilter}
@@ -264,7 +265,7 @@ const Collection = () => {
             </Box>
           </Grid>
 
-        
+
           <Grid item xs={12} sm={9} md={9}>
             <Typography variant="h5" mb={2} sx={{ color: '#D81B60', fontSize: { xs: "20px", sm: "24px" } }}>
               {selectedCategory}
@@ -272,10 +273,10 @@ const Collection = () => {
             <Grid container spacing={{ xs: 1, sm: 3 }}>
               {filteredProducts.length > 0 ? (
                 currentItems.map((product) => (
-                  <Grid item xs={6} sm={6} md={4} lg={3} key={product.id}>
-                    <Box 
-                      border="1px solid #ddd" 
-                      borderRadius={2} 
+                  <Grid item xs={6} sm={6} md={4} lg={3} key={product.id} mb={3}>
+                    <Box
+                      border="1px solid #ddd"
+                      borderRadius={2}
                       p={{ xs: 1, sm: 2 }}
                       textAlign="center"
                       sx={{
@@ -289,7 +290,7 @@ const Collection = () => {
                       <Box position="relative" sx={{ flexGrow: 1 }}>
                         {/* Discount Badge */}
                         {product.Discount > 0 && (
-                          <Chip 
+                          <Chip
                             label={`${product.Discount}% OFF`}
                             size="small"
                             sx={{
@@ -302,12 +303,12 @@ const Collection = () => {
                             }}
                           />
                         )}
-                        
+
                         {/* New Badge */}
                         {product.new === "true" && (
-                          <Chip 
-                            label="NEW" 
-                            size="small" 
+                          <Chip
+                            label="NEW"
+                            size="small"
                             sx={{
                               position: 'absolute',
                               top: 10,
@@ -318,66 +319,65 @@ const Collection = () => {
                             }}
                           />
                         )}
-                        
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
-                          style={{ 
-                            width: "100%", 
-                            height: isMobile ? "150px" : "200px", 
-                            objectFit: "cover", 
-                            borderRadius: "8px" 
-                          }} 
+
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          style={{
+                            width: "100%",
+                            height: isMobile ? "150px" : "200px",
+                            objectFit: "cover",
+                            borderRadius: "8px"
+                          }}
                         />
-                        <IconButton 
-                          onClick={() => handleWishlistToggle(product)} 
-                          sx={{ 
-                            position: "absolute", 
-                            bottom: 10, 
-                            right: 10, 
+                        <IconButton
+                          onClick={() => handleWishlistToggle(product)}
+                          sx={{
+                            position: "absolute",
+                            bottom: 10,
+                            right: 10,
                             backgroundColor: "rgba(255,255,255,0.7)",
                             padding: { xs: "4px", sm: "8px" }
                           }}
                           size={isMobile ? "small" : "medium"}
                         >
-                          <Favorite 
+                          <Favorite
                             fontSize={isMobile ? "small" : "medium"}
-                            color={wishlist.some((item) => item.id === product.id) ? "error" : "inherit"} 
+                            color={wishlist.some((item) => item.id === product.id) ? "error" : "inherit"}
                           />
                         </IconButton>
                       </Box>
-                      
-                      <Typography 
-                        mt={1} 
-                        fontWeight="bold" 
-                        sx={{ 
+
+                      <Typography
+                        fontWeight="bold"
+                        sx={{
                           minHeight: '50px',
                           fontSize: { xs: "14px", sm: "16px" }
                         }}
                       >
                         {product.name}
                       </Typography>
-                      
+
                       {/* Material */}
-                      <Typography variant="caption" color="text.secondary" fontSize={{ xs: "12px", sm: "14px" }}>
+                      <Typography variant="caption" color="text.secondary" mb={1} mt={-2} fontSize={{ xs: "12px", sm: "14px" }}>
                         {product.material}
                       </Typography>
-                      
+
                       {/* Rating */}
-                      <Box my={1}>
-                        <Rating 
-                          name={`rating-${product.id}`} 
-                          value={parseFloat(product.ratings) || 0} 
-                          precision={0.5} 
-                          readOnly 
+                      <Box >
+                        <Rating
+                          name={`rating-${product.id}`}
+                          value={parseFloat(product.ratings) || 0}
+                          precision={0.5}
+                          readOnly
                           size={isMobile ? "small" : "medium"}
                         />
                       </Box>
-                      
+
                       {/* Price Section */}
-                      <Box sx={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
+                      <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
                         justifyContent: 'center',
                         gap: 1,
                         flexWrap: 'wrap',
@@ -385,9 +385,9 @@ const Collection = () => {
                       }}>
                         {product.Discount > 0 ? (
                           <>
-                            <Typography 
-                              variant="body1" 
-                              sx={{ 
+                            <Typography
+                              variant="body1"
+                              sx={{
                                 color: 'text.secondary',
                                 textDecoration: 'line-through',
                                 fontSize: { xs: "14px", sm: "16px" }
@@ -395,10 +395,10 @@ const Collection = () => {
                             >
                               ${product.price}
                             </Typography>
-                            <Typography 
-                              variant="body1" 
-                              sx={{ 
-                                color: '#D81B60', 
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: '#D81B60',
                                 fontWeight: 'bold',
                                 fontSize: { xs: "14px", sm: "16px" }
                               }}
@@ -407,9 +407,9 @@ const Collection = () => {
                             </Typography>
                           </>
                         ) : (
-                          <Typography 
-                            variant="body1" 
-                            sx={{ 
+                          <Typography
+                            variant="body1"
+                            sx={{
                               color: 'text.secondary',
                               fontSize: { xs: "14px", sm: "16px" }
                             }}
@@ -418,15 +418,15 @@ const Collection = () => {
                           </Typography>
                         )}
                       </Box>
-                      
+
                       {/* Add to Cart Button */}
                       <Box mt={{ xs: 1, sm: 2 }}>
-                        <Button 
-                          variant="contained" 
-                          onClick={() => addToCart(product)} 
+                        <Button
+                          variant="contained"
+                          onClick={() => addToCart(product)}
                           fullWidth
                           size={isMobile ? "small" : "medium"}
-                          sx={{ 
+                          sx={{
                             backgroundColor: '#D81B60',
                             fontSize: { xs: "12px", sm: "14px" },
                             padding: { xs: "6px 12px", sm: "8px 16px" },
@@ -443,12 +443,12 @@ const Collection = () => {
                 ))
               ) : (
                 <Grid item xs={12}>
-                  <Typography 
-                    variant="h6" 
-                    color="text.secondary" 
-                    sx={{ 
-                      textAlign: "center", 
-                      width: "100%", 
+                  <Typography
+                    variant="h6"
+                    color="text.secondary"
+                    sx={{
+                      textAlign: "center",
+                      width: "100%",
                       mt: 5,
                       px: 2
                     }}
@@ -463,11 +463,12 @@ const Collection = () => {
 
 
       </Box>
-        <Pagination
+      <Pagination
         count={Math.ceil(filteredProducts.length / itemsPerPage)}
         page={currentPage}
         onChange={(e, value) => setCurrentPage(value)}
-        sx={{ display: 'flex', justifyContent: 'center',mt:10,
+        sx={{
+          display: 'flex', justifyContent: 'center', mt: 10,
           '& .MuiPaginationItem-root': {
             border: '1px solid #ff',
             color: '#D81B60',
@@ -478,7 +479,7 @@ const Collection = () => {
             },
             '&:hover': {
               backgroundColor: '#fff',
-              color:'#D81B60'
+              color: '#D81B60'
             }
           }
         }}
@@ -489,7 +490,5 @@ const Collection = () => {
 };
 
 export default Collection;
-
-
 
 

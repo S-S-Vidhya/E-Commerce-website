@@ -486,5 +486,46 @@
     }
   ],
   "cart": [],
-  "orders": []
+  "orders": [
+    {
+      "id": "a9ed",
+      "items": [
+        {
+          "id": "2",
+          "name": "Diamond Earrings",
+          "category": "Earrings",
+          "price": 1890,
+          "image": "https://images.meesho.com/images/products/228806308/99eic_512.webp",
+          "new": "false",
+          "material": "Diamond",
+          "ratings": "4.1",
+          "Discount": "15",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Silver Bracelet",
+          "category": "Bracelets",
+          "price": 700,
+          "image": "https://ornatejewels.com/cdn/shop/products/OJB0092CZ_1.jpg?v=1742283053",
+          "new": "false",
+          "material": "Silver",
+          "ratings": 4.2,
+          "Discount": "15",
+          "quantity": 2
+        }
+      ],
+      "total": "3290.00",
+      "customer": {
+        "name": "vidhya",
+        "email": "abc@gmail.com",
+        "phone": "234567898",
+        "address": "abc nagar",
+        "city": "nagercoil",
+        "zip": "629801",
+        "upiApp": ""
+      },
+      "date": "25/4/2025, 11:02:00 am"
+    }
+  ]
 }

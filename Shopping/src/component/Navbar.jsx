@@ -228,7 +228,6 @@ const Navbar = () => {
       )}
 
 
-      {/* Add spacer to prevent content from being hidden behind the app bar */}
       <Toolbar sx={{ minHeight: isMobile ? '56px' : '64px' }} />
       {isMobile && <Box sx={{ pb: 7 }} />}
     </>

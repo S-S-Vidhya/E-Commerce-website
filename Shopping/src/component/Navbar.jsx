@@ -130,9 +130,9 @@ const Navbar = () => {
             )}
             {!isMobile && (
               <>
-                {/* <IconButton component={Link} to='/login' sx={{color:' #D81B60'}}>
+                <IconButton component={Link} to='/login' sx={{color:' #D81B60'}}>
                 <Person/>
-                </IconButton> */}
+                </IconButton>
                 <IconButton component={Link} to="/wishlist" sx={{ color: ' #D81B60' }}>
                   <Favorite />
                 </IconButton>
